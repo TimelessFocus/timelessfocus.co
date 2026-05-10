@@ -1,11 +1,14 @@
-# SPA routes
-/home       /index.html   200
-/portfolio  /index.html   200
-/about      /index.html   200
-/contact    /index.html   200
+# Pretty URLs — clean URL → .html file (200 = rewrite, URL stays clean)
+/portfolio    /portfolio.html    200
+/about        /about.html        200
+/investment   /investment.html   200
+/contact      /contact.html      200
 
-# Old Pixieset/legacy redirects
-/new-page/  /  301
-/new-page   /  301
-/galleries/ /portfolio  301
-/galleries  /portfolio  301
+# Old SPA hash routes are handled client-side in index.html
+# (Netlify can't match URL fragments — they never reach the server)
+
+# Legacy Pixieset / old-page redirects
+/new-page/   /            301
+/new-page    /            301
+/galleries/  /portfolio   301
+/galleries   /portfolio   301

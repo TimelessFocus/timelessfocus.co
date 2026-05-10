@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — New England Wedding & Event Photography | Ben Flanders</title>
+<meta name="description" content="Wedding and event photography portfolio by Ben Flanders. Documentary-style coverage across New Hampshire, Massachusetts, Maine, Vermont, and all of New England.">
+<meta name="keywords" content="New England wedding photography portfolio, New Hampshire wedding photos, Vermont wedding photographer, Massachusetts wedding gallery, Camp Cody wedding, Maquam Barn wedding, Glass House Cambridge wedding, SCI Boston gala photography">
+<meta property="og:title" content="Portfolio — New England Wedding & Event Photography | Ben Flanders">
+<meta property="og:description" content="Wedding and event photography portfolio. Documentary-style coverage across New Hampshire, Massachusetts, Maine, Vermont, and all of New England.">
+<meta property="og:url" content="https://www.timelessfocus.co/portfolio">
+<meta property="og:image" content="https://www.timelessfocus.co/images/portfolio-hero.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Portfolio — Ben Flanders Photography">
+<meta name="twitter:description" content="Wedding and event photography portfolio across New England.">
+<meta name="twitter:image" content="https://www.timelessfocus.co/images/portfolio-hero.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://www.timelessfocus.co/portfolio">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Portfolio — Ben Flanders Photography",
+  "url": "https://www.timelessfocus.co/portfolio",
+  "description": "Wedding and event photography portfolio. Documentary-style coverage across all of New England.",
+  "publisher": {
+    "@type": ["LocalBusiness", "Photographer"],
+    "name": "Ben Flanders Photography",
+    "alternateName": "Timeless Focus Co.",
+    "url": "https://www.timelessfocus.co",
+    "email": "ben@timelessfocus.co",
+    "areaServed": [
+      {"@type": "State", "name": "New Hampshire"},
+      {"@type": "State", "name": "Massachusetts"},
+      {"@type": "State", "name": "Maine"},
+      {"@type": "State", "name": "Vermont"},
+      {"@type": "State", "name": "Rhode Island"}
+    ]
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --olive-ink:   #2f3526;
+  --olive-dark:  #4a5539;
+  --olive-mid:   #687558;
+  --olive-soft:  #96a87e;
+  --olive-mist:  #bfcc9e;
+  --olive-haze:  #dfe8cc;
+  --olive-veil:  #eef3e4;
+  --cream:       #faf6ee;
+  --cream-mid:   #f0ead8;
+  --cream-deep:  #e4dbc8;
+  --text:        #2f3526;
+  --text-soft:   #5a6348;
+  --text-muted:  #8a9878;
+  --rule:        #d4dcc0;
+  --ff-display:  'Cormorant Garamond', Georgia, serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--ff-body);
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--ff-body); border: none; background: none; }
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  transition: background .4s var(--ease-out), box-shadow .4s;
+}
+.nav.scrolled {
+  background: rgba(250,246,238,.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--rule);
+}
+.nav-brand {
+  font-family: var(--ff-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--cream);
+  transition: color .4s;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.nav-brand small {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: .6;
+  margin-top: 2px;
+}
+.nav.scrolled .nav-brand { color: var(--olive-ink); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(250,246,238,.75);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color .3s, border-color .3s;
+}
+.nav.scrolled .nav-links a { color: var(--text-soft); }
+.nav-links a:hover,
+.nav-links a.active { color: var(--olive-dark); border-color: var(--olive-soft); }
+.nav.scrolled .nav-links a:hover,
+.nav.scrolled .nav-links a.active { color: var(--olive-dark); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px; height: 36px;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--cream);
+  transition: all .35s var(--ease-out);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-hamburger span:nth-child(1) { top: 11px; }
+.nav-hamburger span:nth-child(2) { top: 17px; width: 16px; }
+.nav-hamburger span:nth-child(3) { top: 23px; }
+.nav.scrolled .nav-hamburger span { background: var(--olive-ink); }
+.nav-hamburger.active span:nth-child(1) { top: 17px; transform: translateX(-50%) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; width: 0; }
+.nav-hamburger.active span:nth-child(3) { top: 17px; transform: translateX(-50%) rotate(-45deg); }
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--olive-ink);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-family: var(--ff-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: .04em;
+  transition: color .2s;
+}
+.nav-mobile a:hover { color: var(--olive-mist); }
+.nav-mobile-close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-size: 2rem;
+  color: rgba(250,246,238,.5);
+  cursor: pointer;
+  background: none; border: none;
+  font-family: var(--ff-body);
+}
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: .95rem 2.4rem;
+  transition: all .25s var(--ease-out);
+  cursor: pointer;
+}
+.btn-olive {
+  background: var(--olive-dark);
+  border: 1px solid var(--olive-dark);
+  color: var(--cream);
+}
+.btn-olive:hover { background: var(--olive-ink); border-color: var(--olive-ink); }
+
+/* ─── SECTIONS ─── */
+.section-label {
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--olive-mid);
+  margin-bottom: 1rem;
+}
+.display-heading {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--olive-ink);
+}
+.display-heading em { font-style: italic; color: var(--olive-mid); }
+
+/* ─── PORTFOLIO PAGE ─── */
+.portfolio-hero {
+  height: 720px;
+  background: var(--olive-ink);
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(150deg, #4a5a38 0%, #6e8050 30%, #90a468 55%, #7a7858 75%, #5a5248 100%);
+  opacity: .7;
+}
+.portfolio-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(30,33,24,.45) 0%, rgba(30,33,24,.1) 100%);
+}
+.portfolio-hero-content { position: relative; z-index: 2; color: var(--cream); width: 100%; text-align: center; }
+
+.portfolio-cats {
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem 3rem;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cat-btn {
+  padding: .5rem 1.4rem;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid var(--rule);
+  background: white;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .2s;
+  border-radius: 2px;
+}
+.cat-btn:hover { border-color: var(--olive-soft); color: var(--olive-dark); }
+.cat-btn.active { background: var(--olive-dark); border-color: var(--olive-dark); color: var(--cream); }
+
+.gallery-wrap {
+  background: var(--cream-mid);
+  padding: 3px;
+}
+.gallery-grid {
+  columns: 4;
+  column-gap: 3px;
+}
+.gallery-cell {
+  overflow: hidden;
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 3px;
+}
+.gallery-cell-inner {
+  transition: transform .6s var(--ease-out);
+  width: 100%;
+  line-height: 0;
+}
+.gallery-cell-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.gallery-cell:hover .gallery-cell-inner { transform: scale(1.04); }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--olive-ink);
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-brand {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  color: rgba(250,246,238,.6);
+  cursor: pointer;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(250,246,238,.35);
+}
+.footer-links a { transition: color .2s; }
+.footer-links a:hover { color: rgba(250,246,238,.7); }
+
+@media (max-width: 900px) {
+  .nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .portfolio-cats { padding: 1.25rem 1.5rem; }
+  .portfolio-hero { height: auto; aspect-ratio: 3/2; padding: 1.5rem; }
+  .gallery-grid { columns: 2; }
+  .footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J28MHTDNWZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J28MHTDNWZ');
+</script>
+</head>
+
+<body data-page="portfolio">
+
+<nav class="nav scrolled" id="mainNav">
+  <a href="/" class="nav-brand-link">
+    <div class="nav-brand">
+      Ben Flanders
+      <small>New England Photographer</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/portfolio" class="active">Portfolio</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/investment">Investment</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="mobileNav">
+  <button class="nav-mobile-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
+  <a href="/">Home</a>
+  <a href="/portfolio">Portfolio</a>
+  <a href="/about">About</a>
+  <a href="/investment">Investment</a>
+  <a href="/contact">Contact</a>
+</div>
+
+<div style="height:68px;"></div>
+
+<div class="portfolio-hero">
+  <div class="portfolio-hero-bg" style="opacity:1;">
+    <img src="images/portfolio-hero.jpg" alt="New Hampshire lakeside wedding ceremony photographed by Ben Flanders" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;">
+  </div>
+  <div class="portfolio-hero-overlay"></div>
+  <div class="portfolio-hero-content">
+    <div class="section-label" style="color:var(--olive-mist);">Work</div>
+    <h1 class="display-heading" style="color:var(--cream);font-size:clamp(1.8rem,3.5vw,2.6rem);">Explore My Work</h1>
+  </div>
+</div>
+
+<div class="portfolio-cats" id="catNav">
+  <button class="cat-btn active" data-cat="weddings" onclick="setCategory('weddings')">Weddings &amp; Engagements</button>
+  <button class="cat-btn" data-cat="events" onclick="setCategory('events')">Events &amp; Gatherings</button>
+</div>
+
+<div class="gallery-wrap" id="gallery-weddings">
+  <div class="gallery-grid">
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-01.jpg" alt="Couple exchanging private vows in the restored granary at Maquam Barn & Winery, Milton Vermont" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-02.jpg" alt="Wedding portrait at Maquam Barn & Winery near Burlington, Vermont" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-03.jpg" alt="Bride and groom share a glance before their reception introduction at Maquam Barn & Winery, Vermont" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-04.jpg" alt="Vermont wedding ceremony with the Green Mountains in view at Maquam Barn & Winery, Milton" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-05.jpg" alt="First dance at Maquam Barn & Winery wedding reception, Vermont" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-06.jpg" alt="Couple walks toward the vineyard at Maquam Barn & Winery, Milton Vermont" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-07.jpg" alt="Father walks the bride down the aisle at Glass House, Kendall Square, Cambridge MA" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-08.jpg" alt="Bride wipes away tears during the wedding ceremony at Glass House, Cambridge Massachusetts" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-09.jpg" alt="Wedding ceremony at Glass House restaurant, Kendall Square, Cambridge MA" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-10.jpg" alt="Groom and parents getting ready at the Marriott Kendall Square ahead of a Glass House wedding, Cambridge" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-11.jpg" alt="Exterior of Glass House wedding venue, Kendall Square, Cambridge Massachusetts" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-12.jpg" alt="Couple lifted on chairs during reception celebration at Glass House, Cambridge MA" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-13.jpg" alt="Guests dancing at Glass House wedding reception, Kendall Square Cambridge" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-14.jpg" alt="First look between bride and groom at the cabins of Camp Cody, Freedom New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-15.jpg" alt="Wedding guests playing cornhole at Camp Cody on Ossipee Lake, New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-16.jpg" alt="New England wedding photography by Ben Flanders — candid moment" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-17.jpg" alt="Camp Cody wedding on Ossipee Lake, Freedom New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-18.jpg" alt="Wedding guests listening to reception speeches at Camp Cody, New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-19.jpg" alt="Lakeside wedding ceremony on Ossipee Lake at Camp Cody, Freedom NH" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-20.jpg" alt="Newlyweds walking back up the aisle after their lakeside ceremony at Camp Cody, New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-21.jpg" alt="First dance at Camp Cody wedding reception, Freedom New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-22.jpg" alt="Newlywed couple lifted on chairs during reception dancing at Camp Cody, NH" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-23.jpg" alt="Groom adjusts his cufflinks before the ceremony at Camp Cody, Freedom New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-24.jpg" alt="Camp Cody wedding day on Ossipee Lake, Freedom NH" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-25.jpg" alt="Wedding portrait at Camp Cody, Freedom New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-26.jpg" alt="Close-up of bridal bouquet and bride's hands at Camp Cody wedding, New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-27.jpg" alt="Bride with bouquet at Camp Cody on Ossipee Lake, Freedom NH" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-28.jpg" alt="Couple exchanging vows lakeside on Ossipee Lake at Camp Cody, New Hampshire" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-29.jpg" alt="New England wedding day captured by Ben Flanders Photography" loading="lazy"></div></div>
+  </div>
+</div>
+
+<div class="gallery-wrap" id="gallery-events" style="display:none;">
+  <div class="gallery-grid">
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-01.jpg" alt="Corporate gala photography — candid attendee moment" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-02.jpg" alt="Nonprofit fundraising event in New England" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-03.jpg" alt="Black-tie gala photography by Ben Flanders" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-04.jpg" alt="Corporate event headshot moment" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-05.jpg" alt="SCI Boston gala — community event photography" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-06.jpg" alt="Speaker presentation at corporate conference" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-07.jpg" alt="Networking moment at New England business event" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-08.jpg" alt="Award ceremony recipient candid portrait" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-09.jpg" alt="Gala dinner table photography" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-10.jpg" alt="Conference panel discussion event photography" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-11.jpg" alt="Corporate brand event in Boston, Massachusetts" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-12.jpg" alt="Nonprofit gala fundraising photography" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-13.jpg" alt="VIP reception event photography" loading="lazy"></div></div>
+    <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-14.jpg" alt="New England corporate event photography by Ben Flanders" loading="lazy"></div></div>
+  </div>
+</div>
+
+<div style="background:var(--cream);padding:2.5rem 3rem;text-align:center;border-top:1px solid var(--rule);">
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic;">Ready to create something together?</p>
+  <a href="/contact" class="btn btn-olive">Get In Touch →</a>
+</div>
+
+<footer class="footer">
+  <a href="/"><div class="footer-brand">Ben Flanders Photography</div></a>
+  <div class="footer-links">
+    <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
+    <a href="/contact">Contact</a>
+    <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
+  </div>
+</footer>
+
+<script>
+function setCategory(cat) {
+  ['weddings','events'].forEach(c => {
+    const el = document.getElementById('gallery-' + c);
+    if (el) el.style.display = c === cat ? 'block' : 'none';
+  });
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+  // Update hash without triggering scroll
+  if (history.replaceState) {
+    history.replaceState(null, '', '#' + cat);
+  }
+}
+
+function updateNav() {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 40) nav.classList.add('scrolled');
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  if (nav.classList.contains('open')) closeMobileNav();
+  else openMobileNav();
+}
+function openMobileNav() {
+  document.getElementById('mobileNav').classList.add('open');
+  document.getElementById('hamburger').classList.add('active');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+// Read URL hash on load to set initial category (e.g. /portfolio#events)
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'events' || hash === 'weddings') {
+    setCategory(hash);
+  }
+});
+</script>
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="578ed839-e6ad-4c32-a0bc-284f758c06e6" data-netlify-deploy-branch="" data-netlify-deploy-context="production"></script>
+
+</body>
+</html>

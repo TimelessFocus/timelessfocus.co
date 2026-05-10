@@ -32,7 +32,6 @@
   "description": "Documentary-style wedding and event photographer based in southern New Hampshire, serving all of New England.",
   "url": "https://www.timelessfocus.co",
   "image": "https://www.timelessfocus.co/images/hero.jpg",
-  "telephone": "",
   "email": "ben@timelessfocus.co",
   "address": {
     "@type": "PostalAddress",
@@ -52,17 +51,21 @@
   ]
 }
 </script>
+<!-- Redirect legacy SPA hash URLs to clean URLs (must run before paint) -->
+<script>
+(function() {
+  var map = { '#portfolio': '/portfolio', '#about': '/about', '#contact': '/contact', '#investment': '/investment', '#home': '/' };
+  if (map[location.hash]) location.replace(map[location.hash]);
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
 <style>
-/* ════════════════════════════════════════
-   DESIGN TOKENS
-════════════════════════════════════════ */
 :root {
-  --olive-ink:   #252b1e;
-  --olive-dark:  #3a4529;
+  --olive-ink:   #2f3526;
+  --olive-dark:  #4a5539;
   --olive-mid:   #687558;
   --olive-soft:  #96a87e;
   --olive-mist:  #bfcc9e;
@@ -85,13 +88,8 @@
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ════════════════════════════════════════
-   RESET & BASE
-════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; font-size: 16px; }
-
 body {
   font-family: var(--ff-body);
   background: var(--cream);
@@ -100,14 +98,10 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: var(--ff-body); border: none; background: none; }
 
-/* ════════════════════════════════════════
-   GRAIN OVERLAY
-════════════════════════════════════════ */
 body::after {
   content: '';
   position: fixed;
@@ -118,15 +112,7 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ════════════════════════════════════════
-   PAGE ROUTING
-════════════════════════════════════════ */
-.page { display: none; }
-.page.active { display: block; }
-
-/* ════════════════════════════════════════
-   NAV
-════════════════════════════════════════ */
+/* ─── NAV ─── */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -164,19 +150,13 @@ body::after {
   margin-top: 2px;
 }
 .nav.scrolled .nav-brand { color: var(--olive-ink); }
-
-.nav-links {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
   font-size: 12px;
   letter-spacing: .14em;
   text-transform: uppercase;
   font-weight: 500;
   color: rgba(250,246,238,.75);
-  transition: color .3s;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
   transition: color .3s, border-color .3s;
@@ -192,16 +172,14 @@ body::after {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 36px; height: 36px;
   padding: 0;
   cursor: pointer;
   position: relative;
 }
 .nav-hamburger span {
   display: block;
-  width: 22px;
-  height: 1.5px;
+  width: 22px; height: 1.5px;
   background: var(--cream);
   transition: all .35s var(--ease-out);
   position: absolute;
@@ -216,8 +194,6 @@ body::after {
 .nav-hamburger.active span:nth-child(2) { opacity: 0; width: 0; }
 .nav-hamburger.active span:nth-child(3) { top: 17px; transform: translateX(-50%) rotate(-45deg); }
 
-
-/* Mobile nav */
 .nav-mobile {
   display: none;
   position: fixed;
@@ -249,9 +225,7 @@ body::after {
   font-family: var(--ff-body);
 }
 
-/* ════════════════════════════════════════
-   BUTTONS
-════════════════════════════════════════ */
+/* ─── BUTTONS ─── */
 .btn {
   display: inline-block;
   font-family: var(--ff-body);
@@ -281,19 +255,8 @@ body::after {
   background: var(--olive-ink);
   border-color: var(--olive-ink);
 }
-.btn-outline {
-  border: 1px solid var(--olive-dark);
-  color: var(--olive-dark);
-  background: transparent;
-}
-.btn-outline:hover {
-  background: var(--olive-dark);
-  color: var(--cream);
-}
 
-/* ════════════════════════════════════════
-   SECTION UTILITIES
-════════════════════════════════════════ */
+/* ─── SECTIONS ─── */
 .section-label {
   font-size: 11px;
   letter-spacing: .24em;
@@ -302,8 +265,6 @@ body::after {
   color: var(--olive-mid);
   margin-bottom: 1rem;
 }
-.section-label-light { color: var(--olive-soft); }
-
 .display-heading {
   font-family: var(--ff-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -312,45 +273,10 @@ body::after {
   color: var(--olive-ink);
 }
 .display-heading em { font-style: italic; color: var(--olive-mid); }
-
 .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
 .section { padding: 5rem 0; }
-.section-sm { padding: 3.5rem 0; }
 
-/* ════════════════════════════════════════
-   PHOTO PLACEHOLDERS
-   (Replace src="" with real image paths)
-════════════════════════════════════════ */
-.photo-placeholder {
-  position: relative;
-  overflow: hidden;
-  background: var(--cream-deep);
-}
-.photo-placeholder::after {
-  content: attr(data-label);
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: rgba(47,53,38,.22);
-  font-family: var(--ff-body);
-  padding: 1rem;
-  text-align: center;
-}
-/* Fuji 400 film-stock gradient overlays */
-.film-1 { background: linear-gradient(145deg, #7a8c64 0%, #9eae82 28%, #bece9c 50%, #aaa882 72%, #888468 100%); }
-.film-2 { background: linear-gradient(158deg, #92a47a 0%, #b0c292 30%, #cad4aa 55%, #b4ac94 75%, #9a9080 100%); }
-.film-3 { background: linear-gradient(150deg, #b0be98 0%, #c8d6ae 35%, #d8dec0 55%, #c6be9e 75%, #aea890 100%); }
-.film-4 { background: linear-gradient(140deg, #8a9e72 0%, #a8be88 28%, #c4d4a0 52%, #b8b290 74%, #9e9880 100%); }
-.film-5 { background: linear-gradient(162deg, #a0b288 0%, #bece9a 30%, #d0d8ac 55%, #c0b89a 75%, #a8a088 100%); }
-
-/* ════════════════════════════════════════
-   HOME — HERO
-════════════════════════════════════════ */
+/* ─── HOME — HERO ─── */
 .hero {
   height: 100svh;
   min-height: 600px;
@@ -467,9 +393,7 @@ body::after {
   50% { width: 60px; opacity: .5; }
 }
 
-/* ════════════════════════════════════════
-   HOME — INTRO STRIP
-════════════════════════════════════════ */
+/* ─── HOME — INTRO STRIP ─── */
 .intro-strip {
   background: var(--cream);
   padding: 4rem 0;
@@ -505,11 +429,8 @@ body::after {
   max-width: 560px;
 }
 
-/* ════════════════════════════════════════
-   HOME — PORTFOLIO TILES
-════════════════════════════════════════ */
+/* ─── HOME — TILES ─── */
 .tiles-section { background: var(--cream-mid); padding: 5rem 2rem 3.5rem; }
-.tiles-header { }
 .tiles-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -523,10 +444,9 @@ body::after {
   cursor: pointer;
   border-radius: 14px;
   background: var(--cream-mid);
+  display: block;
 }
-.tile-img {
-  transition: transform .7s var(--ease-out);
-}
+.tile-img { transition: transform .7s var(--ease-out); }
 .tile:hover .tile-img { transform: scale(1.03); }
 .tile-overlay {
   position: absolute;
@@ -580,9 +500,7 @@ body::after {
   transform: translate(2px, -2px);
 }
 
-/* ════════════════════════════════════════
-   HOME — TESTIMONIALS
-════════════════════════════════════════ */
+/* ─── TESTIMONIALS ─── */
 .testimonials { background: var(--olive-veil); }
 .testi-grid {
   display: grid;
@@ -624,9 +542,7 @@ body::after {
   color: var(--olive-soft);
 }
 
-/* ════════════════════════════════════════
-   HOME — CTA BLOCK
-════════════════════════════════════════ */
+/* ─── CTA BLOCK ─── */
 .cta-block {
   background: var(--olive-ink);
   padding: 6rem 0;
@@ -656,241 +572,7 @@ body::after {
 .cta-heading em { font-style: italic; color: var(--olive-haze); }
 .cta-body { color: rgba(250,246,238,.45); font-size: 14px; line-height: 1.7; margin-bottom: 2.5rem; }
 
-/* ════════════════════════════════════════
-   PORTFOLIO PAGE
-════════════════════════════════════════ */
-.portfolio-hero {
-  height: 720px;
-  background: var(--olive-ink);
-  display: flex;
-  align-items: flex-end;
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-}
-.portfolio-hero-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(150deg, #4a5a38 0%, #6e8050 30%, #90a468 55%, #7a7858 75%, #5a5248 100%);
-  opacity: .7;
-}
-.portfolio-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(30,33,24,.45) 0%, rgba(30,33,24,.1) 100%);
-}
-.portfolio-hero-content { position: relative; z-index: 2; color: var(--cream); width: 100%; text-align: center; }
-
-.portfolio-cats {
-  background: var(--cream);
-  border-bottom: 1px solid var(--rule);
-  padding: 1.5rem 3rem;
-  display: flex;
-  gap: .5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.cat-btn {
-  padding: .5rem 1.4rem;
-  font-size: 10px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  border: 1px solid var(--rule);
-  background: white;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all .2s;
-  border-radius: 2px;
-}
-.cat-btn:hover { border-color: var(--olive-soft); color: var(--olive-dark); }
-.cat-btn.active { background: var(--olive-dark); border-color: var(--olive-dark); color: var(--cream); }
-
-.gallery-wrap {
-  background: var(--cream-mid);
-  padding: 3px;
-}
-.gallery-grid {
-  columns: 4;
-  column-gap: 3px;
-}
-.gallery-cell {
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  break-inside: avoid;
-  margin-bottom: 3px;
-}
-.gallery-cell-inner {
-  transition: transform .6s var(--ease-out);
-  width: 100%;
-  line-height: 0;
-}
-.gallery-cell-inner img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.gallery-cell:hover .gallery-cell-inner { transform: scale(1.04); }
-
-/* ════════════════════════════════════════
-   ABOUT PAGE
-════════════════════════════════════════ */
-.about-intro {
-  background: var(--cream);
-  padding: 6rem 0 5rem;
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "heading portrait"
-    "body portrait";
-  gap: 0 5rem;
-  align-items: start;
-}
-.about-heading-area { grid-area: heading; }
-.about-body-area { grid-area: body; }
-.about-portrait {
-  grid-area: portrait;
-  width: 100%;
-  aspect-ratio: auto;
-  position: sticky;
-  top: 90px;
-  overflow: hidden;
-}
-.about-portrait img { transition: transform .8s var(--ease-out); }
-.about-portrait:hover img { transform: scale(1.03); }
-
-.about-pillars { background: var(--olive-veil); padding: 4rem 0; }
-.pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin-top: 2.5rem;
-}
-.pillar {
-  background: var(--cream);
-  padding: 2.5rem;
-  transition: background .2s;
-}
-.pillar:hover { background: var(--cream-mid); }
-.pillar-num {
-  font-family: var(--ff-display);
-  font-size: 2.2rem;
-  font-weight: 300;
-  color: var(--olive-mist);
-  line-height: 1;
-  margin-bottom: .75rem;
-}
-.pillar-title {
-  font-size: 9.5px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--olive-dark);
-  margin-bottom: .7rem;
-}
-.pillar-text { font-size: 13.5px; line-height: 1.78; color: var(--text-soft); }
-
-/* ════════════════════════════════════════
-   CONTACT PAGE
-════════════════════════════════════════ */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  min-height: calc(100svh - 68px);
-}
-.contact-left {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 4rem 3rem;
-  color: var(--cream);
-}
-.contact-left-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(165deg, #4e6038 0%, #708a4e 35%, #98b070 60%, #a09878 80%, #786858 100%);
-}
-.contact-left-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(30,33,24,.85) 0%, rgba(30,33,24,.55) 40%, rgba(30,33,24,.35) 70%, rgba(30,33,24,.2) 100%);
-}
-.contact-left-content { position: relative; z-index: 2; }
-.contact-left-heading {
-  font-family: var(--ff-display);
-  font-size: 2rem;
-  font-weight: 300;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-.contact-left-heading em { font-style: italic; color: var(--olive-haze); }
-.contact-left-body { font-size: 13px; color: rgba(250,246,238,.58); line-height: 1.85; max-width: 320px; margin-bottom: 2.5rem; }
-.contact-socials { display: flex; flex-direction: column; gap: .6rem; }
-.contact-social {
-  font-size: 11px;
-  letter-spacing: .06em;
-  color: rgba(250,246,238,.38);
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  transition: color .2s;
-}
-.contact-social:hover { color: rgba(250,246,238,.7); }
-
-.contact-right {
-  background: var(--cream);
-  padding: 5rem 3.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.contact-right h2 { margin-bottom: 2.5rem; }
-
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
-.form-group { margin-bottom: 2rem; }
-.form-group.full { grid-column: span 2; }
-.form-label {
-  display: block;
-  font-size: 8.5px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--olive-soft);
-  margin-bottom: .6rem;
-}
-.form-input,
-.form-select,
-.form-textarea {
-  width: 100%;
-  border: none;
-  border-bottom: 1.5px solid var(--rule);
-  padding: .65rem 0;
-  font-size: 14px;
-  font-family: var(--ff-body);
-  color: var(--olive-ink);
-  background: transparent;
-  outline: none;
-  transition: border-color .25s;
-  appearance: none;
-  -webkit-appearance: none;
-}
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus { border-color: var(--olive-dark); }
-.form-input::placeholder,
-.form-textarea::placeholder { color: var(--text-muted); font-weight: 300; }
-.form-select { cursor: pointer; }
-.form-textarea { resize: none; height: 90px; }
-.form-note { font-size: 11px; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; }
-.form-privacy-note { font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: .4rem; }
-
-/* ════════════════════════════════════════
-   FOOTER
-════════════════════════════════════════ */
+/* ─── FOOTER ─── */
 .footer {
   background: var(--olive-ink);
   padding: 3rem;
@@ -917,44 +599,7 @@ body::after {
 .footer-links a { transition: color .2s; }
 .footer-links a:hover { color: rgba(250,246,238,.7); }
 
-
-/* ════════════════════════════════════════
-   LIGHTBOX
-════════════════════════════════════════ */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(20,22,16,.92);
-  backdrop-filter: blur(8px);
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-out;
-}
-.lightbox.open { display: flex; }
-.lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-  pointer-events: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-.lightbox-close {
-  position: absolute;
-  top: 1.5rem; right: 2rem;
-  font-size: 2rem;
-  color: rgba(250,246,238,.5);
-  cursor: pointer;
-  background: none; border: none;
-  font-family: var(--ff-body);
-  z-index: 201;
-}
-.lightbox-close:hover { color: rgba(250,246,238,.8); }
-/* ════════════════════════════════════════
-   SCROLL ANIMATIONS
-════════════════════════════════════════ */
+/* ─── FADE-UPS ─── */
 .fade-up {
   opacity: 0;
   transform: translateY(28px);
@@ -963,11 +608,8 @@ body::after {
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 .fade-up:nth-child(2) { transition-delay: .1s; }
 .fade-up:nth-child(3) { transition-delay: .2s; }
-.fade-up:nth-child(4) { transition-delay: .3s; }
 
-/* ════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════ */
+/* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
@@ -978,19 +620,6 @@ body::after {
   .tiles-section { padding: 3rem 1.5rem 2.5rem; }
   .tiles-section .display-heading { margin-bottom: 1.5rem !important; }
   .testi-grid { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; }
-  .about-heading-area { order: 1; }
-  .about-portrait { position: static; aspect-ratio: auto; order: 2; margin-bottom: 2rem; }
-  .about-body-area { order: 3; }
-  .pillars-grid { grid-template-columns: 1fr; }
-  .contact-wrap { grid-template-columns: 1fr; }
-  .contact-left { min-height: 360px; }
-  .contact-left-overlay { background: rgba(30,33,24,.7) !important; }
-
-  .form-grid { grid-template-columns: 1fr; }
-  .form-group.full { grid-column: span 1; }
-  .gallery-grid { columns: 2; }
-
   .footer { flex-direction: column; align-items: flex-start; }
   .hero-content { padding: 3rem 1.5rem; }
   .hero-bg img { object-position: 65% center; }
@@ -1011,26 +640,7 @@ body::after {
         transparent 70%
       ) !important;
   }
-
-  .portfolio-cats { padding: 1.25rem 1.5rem; }
-  .portfolio-hero { height: auto; aspect-ratio: 3/2; padding: 1.5rem; }
   .nav { padding: 0 1.5rem; }
-}
-
-/* ════════════════════════════════════════
-   FORM SUBMISSION STATE
-════════════════════════════════════════ */
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 3rem;
-  background: var(--olive-veil);
-  border: 1px solid var(--rule);
-}
-.form-success.show { display: block; }
-.form-success-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
 }
 </style>
 <!-- Google Analytics 4 -->
@@ -1043,540 +653,162 @@ body::after {
 </script>
 </head>
 
-<body>
+<body data-page="home">
 
-<!-- ══ NAVIGATION ══ -->
 <nav class="nav" id="mainNav">
-  <div class="nav-brand" onclick="showPage('home')">
-    Ben Flanders
-    <small>New England Photographer</small>
-  </div>
+  <a href="/" class="nav-brand-link">
+    <div class="nav-brand">
+      Ben Flanders
+      <small>New England Photographer</small>
+    </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');return false;" data-page="home">Home</a></li>
-    <li><a href="#" onclick="showPage('portfolio');return false;" data-page="portfolio">Portfolio</a></li>
-    <li><a href="#" onclick="showPage('about');return false;" data-page="about">About</a></li>
-    <li><a href="#" onclick="showPage('contact');return false;" data-page="contact">Contact</a></li>
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/investment">Investment</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<!-- Mobile nav -->
 <div class="nav-mobile" id="mobileNav">
-  <a href="#" onclick="showPage('home');closeMobileNav();return false;">Home</a>
-  <a href="#" onclick="showPage('portfolio');closeMobileNav();return false;">Portfolio</a>
-  <a href="#" onclick="showPage('about');closeMobileNav();return false;">About</a>
-  <a href="#" onclick="showPage('contact');closeMobileNav();return false;">Contact</a>
+  <button class="nav-mobile-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
+  <a href="/">Home</a>
+  <a href="/portfolio">Portfolio</a>
+  <a href="/about">About</a>
+  <a href="/investment">Investment</a>
+  <a href="/contact">Contact</a>
 </div>
 
-<!-- ══════════════════════════════════════
-     HOME PAGE
-══════════════════════════════════════ -->
-<div class="page active" id="page-home">
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="images/hero.jpg" alt="New England wedding photographer Ben Flanders capturing a ceremony moment" id="heroImg">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">New England Wedding &amp; Event Photographer</div>
+    <h1 class="hero-headline">
+      Capturing the&nbsp;moments <em>between the&nbsp;<span class="rotate-word" id="rotateWord">moments.</span><span class="rotate-cursor" aria-hidden="true">|</span></em>
+    </h1>
+    <p class="hero-subline">Documentary-style photography for weddings, engagements &amp; events — across New Hampshire, Maine, Massachusetts, Vermont &amp; beyond.</p>
+    <a href="/portfolio" class="btn btn-ghost">View My Work</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="images/hero.jpg" alt="New England wedding photographer Ben Flanders capturing a ceremony moment" id="heroImg">
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">New England Wedding &amp; Event Photographer</div>
-      <h1 class="hero-headline">
-        Capturing the&nbsp;moments <em>between the&nbsp;<span class="rotate-word" id="rotateWord">moments.</span><span class="rotate-cursor" aria-hidden="true">|</span></em>
-      </h1>
-      <p class="hero-subline">Documentary-style photography for weddings, engagements &amp; events — across New Hampshire, Maine, Massachusetts, Vermont &amp; beyond.</p>
-      <button class="btn btn-ghost" onclick="showPage('portfolio')">View My Work</button>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      Scroll
-    </div>
-  </section>
-
-  <!-- Intro Strip -->
-  <div class="intro-strip">
-    <div class="container">
-      <div class="intro-inner">
-        <div>
-          <div class="section-label">Southern New Hampshire · Shooting New England</div>
-          <p class="intro-body">Based in southern New Hampshire, I photograph weddings, engagements, and events with a photojournalist's eye — quietly present, always watching. Eight years and hundreds of events have taught me one thing: the best photos happen when you stop posing and start living the day.</p>
+<!-- Intro Strip -->
+<div class="intro-strip">
+  <div class="container">
+    <div class="intro-inner">
+      <div>
+        <div class="section-label">Southern New Hampshire · Shooting New England</div>
+        <p class="intro-body">Based in southern New Hampshire, I photograph weddings, engagements, and events with a photojournalist's eye — quietly present, always watching. Eight years and hundreds of events have taught me one thing: the best photos happen when you stop posing and start living the day.</p>
+      </div>
+      <div class="intro-divider"></div>
+      <div class="intro-stats">
+        <div class="stat">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Years Experience</div>
         </div>
-        <div class="intro-divider"></div>
-        <div class="intro-stats">
-          <div class="stat">
-            <div class="stat-num">8+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">200+</div>
-            <div class="stat-label">Events Shot</div>
-          </div>
+        <div class="stat">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Events Shot</div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Portfolio Tiles -->
-  <section class="tiles-section">
-    <div class="tiles-header container">
-      <div class="section-label">Portfolio</div>
-      <h2 class="display-heading" style="margin-bottom:3rem;">The Work</h2>
-    </div>
-    <div class="tiles-grid">
-      <div class="tile" onclick="showPage('portfolio');setCategory('weddings');return false;">
-        <div class="tile-img" style="position:relative;">
-          <img src="images/tile-weddings.jpg" alt="New Hampshire wedding photography portfolio — bride and groom recessional at lakeside ceremony" style="display:block;width:100%;height:auto;">
-        </div>
-        <div class="tile-overlay">
-          <div class="tile-num">01</div>
-          <div class="tile-name">Weddings &amp; Engagements</div>
-          <div class="tile-cta">Explore →</div>
-        </div>
-        <div class="tile-arrow">→</div>
-      </div>
-      <div class="tile" onclick="showPage('portfolio');setCategory('events')">
-        <div class="tile-img" style="position:relative;">
-          <img src="images/tile-events.jpg" alt="New England corporate event and gala photography — candid moment at SCI Boston gala" style="display:block;width:100%;height:auto;">
-        </div>
-        <div class="tile-overlay">
-          <div class="tile-num">02</div>
-          <div class="tile-name">Events &amp; Gatherings</div>
-          <div class="tile-cta">Explore →</div>
-        </div>
-        <div class="tile-arrow">→</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials section">
-    <div class="container">
-      <div class="section-label">Kind Words</div>
-      <h2 class="display-heading">What Clients Say</h2>
-      <div class="testi-grid">
-        <div class="testi fade-up">
-          <div class="testi-mark">"</div>
-          <p class="testi-text">Ben made us feel so comfortable. We barely noticed he was there during the ceremony, and the final delivery was perfect. We didn't have to wait forever for images either, which was a huge bonus for us to share our memories.</p>
-          <div class="testi-attr">Lauren · Wedding, 2024</div>
-        </div>
-        <div class="testi fade-up">
-          <div class="testi-mark">"</div>
-          <p class="testi-text">Ben didn't just take photos and videos — he told the story of our community. He captured the connection, the joy, and the impact of our work in a way that feels authentic and powerful. We will not hesitate to hire him again.</p>
-          <div class="testi-attr">Molly Sebo · SCI Boston Gala, 2026</div>
-        </div>
-        <div class="testi fade-up">
-          <div class="testi-mark">"</div>
-          <p class="testi-text">We got our gallery back and honestly had no notes. Every single image was beautiful. Ben just gets it — he was able to capture so many beautiful moments. He understood exactly what we wanted.</p>
-          <div class="testi-attr">Claire &amp; Daniel · Engagement Session, 2024</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-block">
-    <div class="container">
-      <div class="section-label">Get In Touch</div>
-      <h2 class="cta-heading"><em>Let's make something timeless.</em></h2>
-      <p class="cta-body">If you have a date in mind — or even just a feeling — I'd love to hear about it.</p>
-      <button class="btn btn-olive" onclick="showPage('contact')">Let's Start Planning →</button>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-brand" onclick="showPage('home')">Ben Flanders Photography</div>
-    <div class="footer-links">
-      <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" onclick="showPage('contact');return false;">Contact</a>
-      <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
-    </div>
-  </footer>
-
-</div><!-- /home -->
-
-
-<!-- ══════════════════════════════════════
-     PORTFOLIO PAGE
-══════════════════════════════════════ -->
-<div class="page" id="page-portfolio">
-
-  <div style="height:68px;"></div><!-- nav spacer -->
-
-  <div class="portfolio-hero">
-    <div class="portfolio-hero-bg" style="opacity:1;">
-      <img src="images/portfolio-hero.jpg" alt="New Hampshire lakeside wedding ceremony photographed by Ben Flanders" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;">
-    </div>
-    <div class="portfolio-hero-overlay"></div>
-    <div class="portfolio-hero-content">
-      <div class="section-label" style="color:var(--olive-mist);">Work</div>
-      <h2 class="display-heading" style="color:var(--cream);font-size:clamp(1.8rem,3.5vw,2.6rem);">Explore My Work</h2>
-    </div>
-  </div>
-
-  <div class="portfolio-cats" id="catNav">
-    <button class="cat-btn active" onclick="setCategory('weddings')">Weddings &amp; Engagements</button>
-    <button class="cat-btn" onclick="setCategory('events')">Events &amp; Gatherings</button>
-  </div>
-
-  <!-- Weddings Gallery -->
-  <div class="gallery-wrap" id="gallery-weddings">
-    <div class="gallery-grid">
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-01.jpg" alt="Couple exchanging private vows in the restored granary at Maquam Barn & Winery, Milton Vermont" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-02.jpg" alt="Wedding portrait at Maquam Barn & Winery near Burlington, Vermont" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-03.jpg" alt="Bride and groom share a glance before their reception introduction at Maquam Barn & Winery, Vermont" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-04.jpg" alt="Vermont wedding ceremony with the Green Mountains in view at Maquam Barn & Winery, Milton" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-05.jpg" alt="First dance at Maquam Barn & Winery wedding reception, Vermont" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-06.jpg" alt="Couple walks toward the vineyard at Maquam Barn & Winery, Milton Vermont" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-07.jpg" alt="Father walks the bride down the aisle at Glass House, Kendall Square, Cambridge MA" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-08.jpg" alt="Bride wipes away tears during the wedding ceremony at Glass House, Cambridge Massachusetts" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-09.jpg" alt="Wedding ceremony at Glass House restaurant, Kendall Square, Cambridge MA" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-10.jpg" alt="Groom and parents getting ready at the Marriott Kendall Square ahead of a Glass House wedding, Cambridge" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-11.jpg" alt="Exterior of Glass House wedding venue, Kendall Square, Cambridge Massachusetts" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-12.jpg" alt="Couple lifted on chairs during reception celebration at Glass House, Cambridge MA" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-13.jpg" alt="Guests dancing at Glass House wedding reception, Kendall Square Cambridge" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-14.jpg" alt="First look between bride and groom at the cabins of Camp Cody, Freedom New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-15.jpg" alt="Wedding guests playing cornhole at Camp Cody on Ossipee Lake, New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-16.jpg" alt="New England wedding photography by Ben Flanders — candid moment" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-17.jpg" alt="Camp Cody wedding on Ossipee Lake, Freedom New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-18.jpg" alt="Wedding guests listening to reception speeches at Camp Cody, New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-19.jpg" alt="Lakeside wedding ceremony on Ossipee Lake at Camp Cody, Freedom NH" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-20.jpg" alt="Newlyweds walking back up the aisle after their lakeside ceremony at Camp Cody, New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-21.jpg" alt="First dance at Camp Cody wedding reception, Freedom New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-22.jpg" alt="Newlywed couple lifted on chairs during reception dancing at Camp Cody, NH" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-23.jpg" alt="Groom adjusts his cufflinks before the ceremony at Camp Cody, Freedom New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-24.jpg" alt="Camp Cody wedding day on Ossipee Lake, Freedom NH" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-25.jpg" alt="Wedding portrait at Camp Cody, Freedom New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-26.jpg" alt="Close-up of bridal bouquet and bride's hands at Camp Cody wedding, New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-27.jpg" alt="Bride with bouquet at Camp Cody on Ossipee Lake, Freedom NH" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-28.jpg" alt="Couple exchanging vows lakeside on Ossipee Lake at Camp Cody, New Hampshire" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/wedding-29.jpg" alt="New England wedding day captured by Ben Flanders Photography" loading="lazy"></div></div>
-    </div>
-  </div>
-
-  <div class="gallery-wrap" id="gallery-events" style="display:none;">
-    <div class="gallery-grid">
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-01.jpg" alt="Corporate gala photography — candid attendee moment" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-02.jpg" alt="Nonprofit fundraising event in New England" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-03.jpg" alt="Black-tie gala photography by Ben Flanders" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-04.jpg" alt="Corporate event headshot moment" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-05.jpg" alt="SCI Boston gala — community event photography" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-06.jpg" alt="Speaker presentation at corporate conference" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-07.jpg" alt="Networking moment at New England business event" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-08.jpg" alt="Award ceremony recipient candid portrait" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-09.jpg" alt="Gala dinner table photography" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-10.jpg" alt="Conference panel discussion event photography" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-11.jpg" alt="Corporate brand event in Boston, Massachusetts" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-12.jpg" alt="Nonprofit gala fundraising photography" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-13.jpg" alt="VIP reception event photography" loading="lazy"></div></div>
-      <div class="gallery-cell"><div class="gallery-cell-inner"><img src="images/event-14.jpg" alt="New England corporate event photography by Ben Flanders" loading="lazy"></div></div>
-    </div>
-  </div>
-
-  <div style="background:var(--cream);padding:2.5rem 3rem;text-align:center;border-top:1px solid var(--rule);">
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic;">Ready to create something together?</p>
-    <button class="btn btn-olive" onclick="showPage('contact')">Get In Touch →</button>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-brand" onclick="showPage('home')">Ben Flanders Photography</div>
-    <div class="footer-links">
-      <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" onclick="showPage('contact');return false;">Contact</a>
-      <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
-    </div>
-  </footer>
-
-</div><!-- /portfolio -->
-
-
-<!-- ══════════════════════════════════════
-     ABOUT PAGE
-══════════════════════════════════════ -->
-<div class="page" id="page-about">
-
-  <div style="height:68px;"></div>
-
-  <section class="about-intro">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-heading-area">
-          <div class="section-label">About</div>
-          <h2 class="display-heading" style="margin-bottom:2rem;">Hey — It's nice <em>to meet you.</em></h2>
-        </div>
-        <div class="about-portrait" style="overflow:hidden;">
-          <img src="images/portrait.jpg" alt="Ben Flanders, New England wedding and event photographer based in Concord, New Hampshire" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-        <div class="about-body-area">
-          <p style="font-size:14.5px;line-height:1.88;color:var(--text-soft);margin-bottom:1.25rem;">Ever since I could reach the cabinet where my mom kept her Canon AE-1, I've been fascinated with cameras. My parents love to bring up, usually at holidays, how I'd always ask to hold the family camcorder whenever it came out. My dad collected National Geographic magazines (some on shelves, some stacked in the bathroom), and I remember sneaking them away whenever I could to study the photos. The ones that stuck with me were always of people. In the spaces they lived, where they worked, with the people they cared about.</p>
-          <p style="font-size:14.5px;line-height:1.88;color:var(--text-soft);margin-bottom:1.25rem;">That fascination still shapes how I approach every event I cover. I treat each one like a story. From the moment guests arrive through the main event and everything in between, my focus is on being present without interrupting the moments that matter most. At weddings, that means patience. It means the way two people look at each other when they think no one's watching. The moment a parent steps in for that first hug. Friends coming together to celebrate (and absolutely losing it on the dance floor).</p>
-          <p style="font-size:14.5px;line-height:1.88;color:var(--text-soft);margin-bottom:2rem;">I'm based in southern New Hampshire, which puts me right in the middle of New England. I've shot as far south as Connecticut and Rhode Island, as far north as Burlington, Vermont and Maine, and everywhere in between: Boston, Cambridge, Newton, Canton, Groton. Intimate backyard ceremonies, elegant vineyard weddings, large corporate galas, private events. If it's happening in New England, I'll be there. My Junior Editing Assistant, Mr. Pickles, carefully reviews all of my selects in exchange for treats.</p>
-          <div style="margin-bottom:2rem;overflow:hidden;border:1px solid var(--rule);max-width:420px;">
-            <div style="overflow:hidden;">
-              <img src="images/cat.jpg" alt="The Junior Editing Assistant" style="width:100%;height:auto;display:block;">
-            </div>
-            <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);padding:.75rem 1rem;background:var(--cream-mid);">The Junior Editing Assistant</p>
-          </div>
-          <button class="btn btn-outline" onclick="showPage('contact')">Work With Me →</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="about-pillars">
-    <div class="container">
-      <div class="section-label">How I Work</div>
-      <h2 class="display-heading">The approach.</h2>
-      <div class="pillars-grid">
-        <div class="pillar fade-up">
-          <div class="pillar-num">01</div>
-          <div class="pillar-title">Approach</div>
-          <p class="pillar-text">I work best when I'm invisible. Low-pressure, unobtrusive, and always watching — I move through events like a guest who happens to have a camera. The result is a set of images that feel lived-in, not performed.</p>
-        </div>
-        <div class="pillar fade-up">
-          <div class="pillar-num">02</div>
-          <div class="pillar-title">Style</div>
-          <p class="pillar-text">Clean, true-to-color, and documentary at heart. I'm not chasing moody presets or trending edits — I'm chasing light. Every image I deliver is something you could frame, and something you'll still love in twenty years.</p>
-        </div>
-        <div class="pillar fade-up">
-          <div class="pillar-num">03</div>
-          <div class="pillar-title">Experience</div>
-          <p class="pillar-text">Eight years and hundreds of events across New England. Weddings, engagements, corporate gatherings, arts performances. I've shot in barns, ballrooms, and blizzards. I don't rattle.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-block">
-    <div class="container">
-      <div class="section-label">Let's Collaborate</div>
-      <h2 class="cta-heading"><em>Let's work together.</em></h2>
-      <p class="cta-body">Have a date in mind? I'd love to hear about it.</p>
-      <button class="btn btn-olive" onclick="showPage('contact')">Contact Me →</button>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-brand" onclick="showPage('home')">Ben Flanders Photography</div>
-    <div class="footer-links">
-      <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" onclick="showPage('contact');return false;">Contact</a>
-      <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
-    </div>
-  </footer>
-
-</div><!-- /about -->
-
-
-<!-- ══════════════════════════════════════
-     CONTACT PAGE
-══════════════════════════════════════ -->
-<div class="page" id="page-contact">
-
-  <div style="height:68px;"></div>
-
-  <div class="contact-wrap">
-    <div class="contact-left">
-      <div class="contact-left-bg" style="background:none;">
-        <img src="images/contact.jpg" alt="New England wedding ceremony photographed by Ben Flanders Photography" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% center;">
-      </div>
-      <div class="contact-left-overlay"></div>
-      <div class="contact-left-content">
-        <h2 class="contact-left-heading">
-          Every great event<br><em>starts with a conversation.</em>
-        </h2>
-        <p class="contact-left-body">Tell me about your date, your venue, your vision — or just that you're still figuring it out. I'll respond within 48 hours, and from there we'll take it one step at a time.</p>
-        <div class="contact-socials">
-          <a href="mailto:ben@timelessfocus.co" class="contact-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg> &nbsp;ben@timelessfocus.co</a>
-          <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener" class="contact-social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5.5"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg> &nbsp;@bennm.jpg</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-right">
-      <div class="section-label">Inquire</div>
-      <h2 class="display-heading" style="font-size:1.8rem;margin-bottom:2.5rem;">Tell me about<br><em>your event.</em></h2>
-
-      <form id='contactForm' method='POST' name='contact' onsubmit='handleSubmit(event)'>
-        <input type="hidden" name="form-name" value="contact">
-        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
-        <input type="hidden" name="subject" value="New inquiry from timelessfocus.co">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label" for="name">Name *</label>
-            <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">Email Address *</label>
-            <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
-            <p class="form-privacy-note">Spam sucks — your email stays with me.</p>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="date">Event Date</label>
-            <input class="form-input" type="text" id="date" name="date" placeholder="MM / DD / YYYY">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="service">Services Interested In *</label>
-            <select class="form-select" id="service" name="service" required>
-              <option value="" disabled selected>Select…</option>
-              <option>Wedding</option>
-              <option>Engagement</option>
-              <option>Corporate Event</option>
-              <option>Gathering</option>
-              <option>Party</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label class="form-label" for="referral">How did you hear about me?</label>
-            <select class="form-select" id="referral" name="referral">
-              <option value="" disabled selected>Select…</option>
-              <option>Instagram</option>
-              <option>Google search</option>
-              <option>Referral from a friend or past client</option>
-              <option>A vendor or planner</option>
-              <option>Worked together before</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label class="form-label" for="message">Tell Me About Your Vision *</label>
-            <textarea class="form-textarea" id="message" name="message" placeholder="Venue, vibe, what matters most to you…" required></textarea>
-          </div>
-        </div>
-        <p class="form-note">No packages, no pressure — just a conversation.</p>
-        <button type="submit" class="btn btn-olive">Send Message →</button>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-icon">✓</div>
-        <h3 style="font-family:var(--ff-display);font-size:1.6rem;font-weight:300;margin-bottom:.5rem;">Got it — talk soon.</h3>
-        <p style="color:var(--text-soft);font-size:14px;">Thanks for reaching out. I'll get back to you within 24 hours.</p>
-      </div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-brand" onclick="showPage('home')">Ben Flanders Photography</div>
-    <div class="footer-links">
-      <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" onclick="showPage('contact');return false;">Contact</a>
-      <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
-    </div>
-  </footer>
-
-</div><!-- /contact -->
-
-
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightboxImg" src="" alt="Enlarged photo" oncontextmenu="return false;" draggable="false">
 </div>
 
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── PAGE ROUTING ──
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const page = document.getElementById('page-' + name);
-  if (page) page.classList.add('active');
+<!-- Portfolio Tiles -->
+<section class="tiles-section">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2 class="display-heading" style="margin-bottom:3rem;">The Work</h2>
+  </div>
+  <div class="tiles-grid">
+    <a href="/portfolio#weddings" class="tile">
+      <div class="tile-img" style="position:relative;">
+        <img src="images/tile-weddings.jpg" alt="New Hampshire wedding photography portfolio — bride and groom recessional at lakeside ceremony" style="display:block;width:100%;height:auto;">
+      </div>
+      <div class="tile-overlay">
+        <div class="tile-num">01</div>
+        <div class="tile-name">Weddings &amp; Engagements</div>
+        <div class="tile-cta">Explore →</div>
+      </div>
+      <div class="tile-arrow">→</div>
+    </a>
+    <a href="/portfolio#events" class="tile">
+      <div class="tile-img" style="position:relative;">
+        <img src="images/tile-events.jpg" alt="New England corporate event and gala photography — candid moment at SCI Boston gala" style="display:block;width:100%;height:auto;">
+      </div>
+      <div class="tile-overlay">
+        <div class="tile-num">02</div>
+        <div class="tile-name">Events &amp; Gatherings</div>
+        <div class="tile-cta">Explore →</div>
+      </div>
+      <div class="tile-arrow">→</div>
+    </a>
+  </div>
+</section>
 
-  // Update nav active state
-  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
-    a.classList.toggle('active', a.dataset.page === name);
-  });
+<!-- Testimonials -->
+<section class="testimonials section">
+  <div class="container">
+    <div class="section-label">Kind Words</div>
+    <h2 class="display-heading">What Clients Say</h2>
+    <div class="testi-grid">
+      <div class="testi fade-up">
+        <div class="testi-mark">"</div>
+        <p class="testi-text">Ben made us feel so comfortable. We barely noticed he was there during the ceremony, and the final delivery was perfect. We didn't have to wait forever for images either, which was a huge bonus for us to share our memories.</p>
+        <div class="testi-attr">Lauren · Wedding, 2024</div>
+      </div>
+      <div class="testi fade-up">
+        <div class="testi-mark">"</div>
+        <p class="testi-text">Ben didn't just take photos and videos — he told the story of our community. He captured the connection, the joy, and the impact of our work in a way that feels authentic and powerful. We will not hesitate to hire him again.</p>
+        <div class="testi-attr">Molly Sebo · SCI Boston Gala, 2026</div>
+      </div>
+      <div class="testi fade-up">
+        <div class="testi-mark">"</div>
+        <p class="testi-text">We got our gallery back and honestly had no notes. Every single image was beautiful. Ben just gets it — he was able to capture so many beautiful moments. He understood exactly what we wanted.</p>
+        <div class="testi-attr">Claire &amp; Daniel · Engagement Session, 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'instant' });
+<!-- CTA -->
+<section class="cta-block">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="cta-heading"><em>Let's make something timeless.</em></h2>
+    <p class="cta-body">If you have a date in mind — or even just a feeling — I'd love to hear about it.</p>
+    <a href="/contact" class="btn btn-olive">Let's Start Planning →</a>
+  </div>
+</section>
 
-  // Update URL hash
-  history.pushState(null, '', '/' + (name === 'home' ? '' : name));
+<footer class="footer">
+  <a href="/"><div class="footer-brand">Ben Flanders Photography</div></a>
+  <div class="footer-links">
+    <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
+    <a href="/contact">Contact</a>
+    <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
+  </div>
+</footer>
 
-  // Reset nav scroll state for pages without hero
-  if (name !== 'home') {
-    document.getElementById('mainNav').classList.add('scrolled');
-  } else {
-    updateNav();
-  }
-
-
-  // Update canonical URL, title, and meta description for current page
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) {
-    canonical.href = 'https://www.timelessfocus.co/' + (name === 'home' ? '' : name);
-  }
-  const pageMeta = {
-    home: {
-      title: 'Ben Flanders — New England Wedding & Event Photographer',
-      desc: 'Documentary-style wedding and event photographer based in New Hampshire, serving MA, ME, VT, and all of New England. Real moments, timeless results.'
-    },
-    portfolio: {
-      title: 'Portfolio — Ben Flanders Photography',
-      desc: 'Browse wedding and event photography by Ben Flanders. Documentary-style coverage across New Hampshire, Massachusetts, Maine, Vermont, and New England.'
-    },
-    about: {
-      title: 'About — Ben Flanders Photography',
-      desc: 'Meet Ben Flanders, a documentary-style wedding and event photographer based in southern New Hampshire, shooting across all of New England.'
-    },
-    contact: {
-      title: 'Contact — Ben Flanders Photography',
-      desc: 'Get in touch to discuss your wedding, engagement, or event. Ben Flanders Photography serves all of New England from southern New Hampshire.'
-    }
-  };
-  if (pageMeta[name]) {
-    document.title = pageMeta[name].title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.content = pageMeta[name].desc;
-  }
-  // Track page view in GA4
-  if (typeof gtag === 'function') {
-    gtag('event', 'page_view', {
-      page_path: '/' + (name === 'home' ? '' : name),
-      page_title: document.title
-    });
-  }
-
-  // Trigger fade-up animations
-  setTimeout(initFadeUps, 100);
-}
-
-// ── GALLERY CATEGORY SWITCHING ──
-function setCategory(cat) {
-  ['weddings','events'].forEach(c => {
-    const el = document.getElementById('gallery-' + c);
-    if (el) el.style.display = c === cat ? 'block' : 'none';
-  });
-  document.querySelectorAll('.cat-btn').forEach((btn, i) => {
-    const cats = ['weddings','events'];
-    btn.classList.toggle('active', cats[i] === cat);
-  });
-}
-
-// ── NAV SCROLL BEHAVIOR ──
+<script>
 function updateNav() {
   const nav = document.getElementById('mainNav');
-  const isHome = document.getElementById('page-home').classList.contains('active');
-  if (isHome) {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-    // Also update brand/links color for transparent state
-    const onDark = window.scrollY <= 40;
-    nav.querySelectorAll('.nav-links a').forEach(a => {
-      a.style.color = onDark ? '' : '';
-    });
-  } else {
-    nav.classList.add('scrolled');
-  }
+  nav.classList.toggle('scrolled', window.scrollY > 40);
 }
 window.addEventListener('scroll', updateNav, { passive: true });
-window.addEventListener('touchstart', function(){}, { passive: true });
 
-// ── SCROLL FADE-UPS ──
 function initFadeUps() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1586,33 +818,13 @@ function initFadeUps() {
       }
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
 }
 
-// ── CONTACT FORM ──
-// Netlify Forms handles submission; ben@timelessfocus.co receives notifications
-function handleSubmit(e) {
-  e.preventDefault();
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(new FormData(form)).toString()
-  })
-  .then(() => { form.style.display='none'; success.classList.add('show'); })
-  .catch(() => { form.style.display='none'; success.classList.add('show'); });
-}
-
-// ── MOBILE NAV ──
-
-// ── MOBILE NAV TOGGLE ──
 function toggleMobileNav() {
   const nav = document.getElementById('mobileNav');
-  if (nav.classList.contains('open')) { closeMobileNav(); }
-  else { openMobileNav(); }
+  if (nav.classList.contains('open')) closeMobileNav();
+  else openMobileNav();
 }
 function openMobileNav() {
   document.getElementById('mobileNav').classList.add('open');
@@ -1623,33 +835,20 @@ function closeMobileNav() {
   document.getElementById('hamburger').classList.remove('active');
 }
 
-// ── HERO IMAGE LOAD ──
+// Hero image fade-in
 const heroImg = document.getElementById('heroImg');
 if (heroImg) {
-  if (heroImg.complete) { heroImg.classList.add('loaded'); }
-  else { heroImg.addEventListener('load', () => heroImg.classList.add('loaded')); }
+  if (heroImg.complete) heroImg.classList.add('loaded');
+  else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
 }
 
-// ── HASH ROUTING on load ──
-window.addEventListener('DOMContentLoaded', () => {
-  let path = window.location.pathname.replace('/','') || 'home';
-  const valid = ['home','portfolio','about','contact'];
-  showPage(valid.includes(path) ? path : 'home');
-  initFadeUps();
-});
+window.addEventListener('DOMContentLoaded', initFadeUps);
 
-// Browser back button
-window.addEventListener('popstate', () => {
-  let path = window.location.pathname.replace('/','') || 'home';
-  showPage(path);
-});
-
-// ── HERO HEADLINE: typewriter rotation ──
+// Hero headline typewriter rotation
 (function initWordRotator() {
   const el = document.getElementById('rotateWord');
   if (!el) return;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return; // leave "moments" static
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const words = ['moments.', 'laughter.', 'glances.', 'embraces.', 'toasts.', 'tears.'];
   let wordIndex = 0;
@@ -1658,7 +857,6 @@ window.addEventListener('popstate', () => {
   const HOLD_MS = 3000;
   const PAUSE_BEFORE_NEXT = 250;
 
-  // Start cycle after initial page settle
   setTimeout(() => cycle(), 2200);
 
   function cycle() {
@@ -1669,24 +867,20 @@ window.addEventListener('popstate', () => {
   }
   function erase(done) {
     const current = el.textContent;
-    if (current.length === 0) {
-      setTimeout(done, PAUSE_BEFORE_NEXT);
-      return;
-    }
+    if (current.length === 0) { setTimeout(done, PAUSE_BEFORE_NEXT); return; }
     el.textContent = current.slice(0, -1);
     setTimeout(() => erase(done), ERASE_MS);
   }
   function type(target, done) {
     const current = el.textContent;
-    if (current.length === target.length) {
-      done();
-      return;
-    }
+    if (current.length === target.length) { done(); return; }
     el.textContent = target.slice(0, current.length + 1);
     setTimeout(() => type(target, done), TYPE_MS);
   }
 })();
 </script>
 
-<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="578ed839-e6ad-4c32-a0bc-284f758c06e6" data-netlify-deploy-branch="" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiNTc4ZWQ4MzktZTZhZC00YzMyLWEwYmMtMjg0Zjc1OGMwNmU2IiwiYWNjb3VudF9pZCI6IjY5YWM5NTIxZDJlMzRlNDA3M2Y5ZmJhMCIsImRlcGxveV9pZCI6IjY5YjhhMTE1ODc2MjViZDQ5ZTQ0Y2U5OSIsImlzc3VlciI6Im5mc2VydmVyIn0.gJlQcqbuxGCXu1TFQZfTkBPwemUM_9t5ekDvSj9dGCw"></script></body>
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="578ed839-e6ad-4c32-a0bc-284f758c06e6" data-netlify-deploy-branch="" data-netlify-deploy-context="production"></script>
+
+</body>
 </html>

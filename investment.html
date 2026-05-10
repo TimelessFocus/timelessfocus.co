@@ -3,7 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment — Ben Flanders Photography</title>
+<title>Investment — Wedding Photography Pricing | Ben Flanders</title>
+<meta name="description" content="Wedding photography starting at $3,000 and engagement sessions at $400. Documentary-style coverage across New Hampshire, Massachusetts, Maine, Vermont, and New England.">
+<meta name="keywords" content="wedding photography pricing, New England wedding photographer cost, engagement session pricing, New Hampshire wedding photography investment, Ben Flanders pricing">
+<meta property="og:title" content="Investment — Wedding Photography Pricing | Ben Flanders">
+<meta property="og:description" content="Wedding photography starting at $3,000 and engagement sessions at $400. Documentary-style coverage across New England.">
+<meta property="og:url" content="https://www.timelessfocus.co/investment">
+<meta property="og:image" content="https://www.timelessfocus.co/images/investment-hero.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Investment — Wedding Photography Pricing | Ben Flanders">
+<meta name="twitter:description" content="Wedding photography starting at $3,000 and engagement sessions at $400. Documentary-style coverage across New England.">
+<meta name="twitter:image" content="https://www.timelessfocus.co/images/investment-hero.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://www.timelessfocus.co/investment">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Wedding and Event Photography",
+  "provider": {
+    "@type": ["LocalBusiness", "Photographer"],
+    "name": "Ben Flanders Photography",
+    "alternateName": "Timeless Focus Co.",
+    "url": "https://www.timelessfocus.co",
+    "email": "ben@timelessfocus.co",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "NH",
+      "addressCountry": "US"
+    }
+  },
+  "areaServed": [
+    {"@type": "State", "name": "New Hampshire"},
+    {"@type": "State", "name": "Massachusetts"},
+    {"@type": "State", "name": "Maine"},
+    {"@type": "State", "name": "Vermont"},
+    {"@type": "State", "name": "Rhode Island"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Photography Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Wedding Photography",
+        "description": "8 hours of coverage, minimum 300 fully edited high-resolution images, 24-hour sneak peek gallery, online gallery hosted for one full year, travel within 60 miles of Manchester NH, pre-wedding planning consultation, final gallery within 10–12 weeks.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "3000.00",
+          "priceCurrency": "USD",
+          "valueAddedTaxIncluded": false
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Engagement Session",
+        "description": "1–2 hours of coverage and full print rights.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "400.00",
+          "priceCurrency": "USD",
+          "valueAddedTaxIncluded": false
+        }
+      }
+    ]
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -39,6 +109,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+a { color: inherit; text-decoration: none; }
 
 body::after {
   content: '';
@@ -50,12 +121,10 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-
-/* ─── NAV (exact match to live site) ─── */
+/* ─── NAV ─── */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   height: 68px;
   display: flex;
@@ -105,7 +174,6 @@ body::after {
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
   transition: color .3s, border-color .3s;
-  text-decoration: none;
 }
 .nav.scrolled .nav-links a { color: var(--text-soft); }
 .nav-links a:hover,
@@ -116,21 +184,68 @@ body::after {
 .nav-hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   cursor: pointer;
+  position: relative;
+  background: none;
+  border: none;
 }
 .nav-hamburger span {
-  width: 24px;
+  display: block;
+  width: 22px;
   height: 1.5px;
   background: var(--cream);
-  transition: background .4s;
+  transition: all .35s var(--ease-out);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
+.nav-hamburger span:nth-child(1) { top: 11px; }
+.nav-hamburger span:nth-child(2) { top: 17px; width: 16px; }
+.nav-hamburger span:nth-child(3) { top: 23px; }
 .nav.scrolled .nav-hamburger span { background: var(--olive-ink); }
+.nav-hamburger.active span:nth-child(1) { top: 17px; transform: translateX(-50%) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; width: 0; }
+.nav-hamburger.active span:nth-child(3) { top: 17px; transform: translateX(-50%) rotate(-45deg); }
 
-/* ─── CONTAINER (matches live site) ─── */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--olive-ink);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-family: var(--ff-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: .04em;
+  transition: color .2s;
+}
+.nav-mobile a:hover { color: var(--olive-mist); }
+.nav-mobile-close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-size: 2rem;
+  color: rgba(250,246,238,.5);
+  cursor: pointer;
+  background: none; border: none;
+  font-family: var(--ff-body);
+}
+
 .container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
 
-/* ─── INVEST PAGE HERO (uses portfolio-hero pattern from live site) ─── */
+/* ─── INVEST PAGE HERO ─── */
 .invest-hero {
   height: 720px;
   background: var(--olive-ink);
@@ -145,22 +260,6 @@ body::after {
   inset: 0;
   background: var(--olive-ink);
 }
-.invest-hero-bg-image-slot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--olive-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--olive-mist);
-  border: 1px dashed var(--olive-mist);
-  opacity: .6;
-}
 .invest-hero-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(30,33,24,.45) 0%, rgba(30,33,24,.1) 100%);
@@ -173,7 +272,7 @@ body::after {
   text-align: center;
 }
 
-/* ─── SECTION LABEL (exact match) ─── */
+/* ─── SECTION LABEL ─── */
 .section-label {
   font-size: 11px;
   letter-spacing: .24em;
@@ -184,7 +283,6 @@ body::after {
 }
 .section-label-light { color: var(--olive-mist); }
 
-/* Hero h2 styling matches portfolio hero */
 .invest-hero h2 {
   font-family: var(--ff-display);
   font-weight: 300;
@@ -336,7 +434,7 @@ body::after {
   line-height: 1.6;
 }
 
-/* ─── CTA BLOCK (exact copy from live site) ─── */
+/* ─── CTA BLOCK ─── */
 .cta-block {
   background: var(--olive-ink);
   padding: 6rem 0;
@@ -366,7 +464,7 @@ body::after {
 .cta-heading em { font-style: italic; color: var(--olive-haze); }
 .cta-body { color: rgba(250,246,238,.45); font-size: 14px; line-height: 1.7; margin-bottom: 2.5rem; }
 
-/* ─── BUTTONS (exact copy from live site) ─── */
+/* ─── BUTTONS ─── */
 .btn {
   display: inline-block;
   font-family: var(--ff-body);
@@ -377,7 +475,6 @@ body::after {
   padding: .95rem 2.4rem;
   transition: all .25s var(--ease-out);
   cursor: pointer;
-  text-decoration: none;
 }
 .btn-olive {
   background: var(--olive-dark);
@@ -389,7 +486,7 @@ body::after {
   border-color: var(--olive-ink);
 }
 
-/* ─── FOOTER (exact copy from live site) ─── */
+/* ─── FOOTER ─── */
 .footer {
   background: var(--olive-ink);
   padding: 3rem;
@@ -413,15 +510,19 @@ body::after {
   text-transform: uppercase;
   color: rgba(250,246,238,.35);
 }
-.footer-links a {
-  color: inherit;
-  text-decoration: none;
-  transition: color .2s;
-}
+.footer-links a { transition: color .2s; }
 .footer-links a:hover { color: rgba(250,246,238,.7); }
 
+/* ─── SCROLL FADE-UPS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
 /* ─── MOBILE ─── */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
@@ -439,25 +540,45 @@ body::after {
   .footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
 }
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J28MHTDNWZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J28MHTDNWZ');
+</script>
 </head>
-<body>
+
+<body data-page="investment">
 
 <nav class="nav" id="mainNav">
-  <a href="index.html" style="text-decoration:none;display:block;" class="nav-brand-link"><div class="nav-brand">
-    Ben Flanders
-    <small>New England Photographer</small>
-  </div></a>
+  <a href="/" class="nav-brand-link">
+    <div class="nav-brand">
+      Ben Flanders
+      <small>New England Photographer</small>
+    </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="index.html#home">Home</a></li>
-    <li><a href="index.html#portfolio">Portfolio</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="investment.html" class="active">Investment</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/investment" class="active">Investment</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
-  <div class="nav-hamburger">
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
+
+<div class="nav-mobile" id="mobileNav">
+  <button class="nav-mobile-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
+  <a href="/">Home</a>
+  <a href="/portfolio">Portfolio</a>
+  <a href="/about">About</a>
+  <a href="/investment">Investment</a>
+  <a href="/contact">Contact</a>
+</div>
 
 <section class="invest-hero">
   <div class="invest-hero-bg">
@@ -526,33 +647,63 @@ body::after {
   </div>
 </section>
 
-<!-- CTA BLOCK — exact match to live site Let's Collaborate pattern -->
 <section class="cta-block">
   <div class="container">
     <div class="section-label">Get In Touch</div>
     <h2 class="cta-heading"><em>Let's plan your day.</em></h2>
     <p class="cta-body">Send me the details. I'll be in touch.</p>
-    <a href="index.html#contact" class="btn btn-olive">Start A Conversation →</a>
+    <a href="/contact" class="btn btn-olive">Start A Conversation →</a>
   </div>
 </section>
 
-<!-- FOOTER — exact match to live site -->
 <footer class="footer">
-  <a href="index.html" style="text-decoration:none;"><div class="footer-brand">Ben Flanders Photography</div></a>
+  <a href="/"><div class="footer-brand">Ben Flanders Photography</div></a>
   <div class="footer-links">
     <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="/contact">Contact</a>
     <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
   </div>
 </footer>
 
 <script>
-window.addEventListener('scroll', () => {
+function updateNav() {
   const nav = document.getElementById('mainNav');
-  if (window.scrollY > 50) nav.classList.add('scrolled');
+  if (window.scrollY > 40) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
-});
+}
+// Investment page has no transparent-nav hero; keep nav scrolled always for contrast on cream sections after hero
+window.addEventListener('scroll', updateNav, { passive: true });
+
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  if (nav.classList.contains('open')) closeMobileNav();
+  else openMobileNav();
+}
+function openMobileNav() {
+  document.getElementById('mobileNav').classList.add('open');
+  document.getElementById('hamburger').classList.add('active');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+function initFadeUps() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
+}
+
+window.addEventListener('DOMContentLoaded', initFadeUps);
 </script>
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="578ed839-e6ad-4c32-a0bc-284f758c06e6" data-netlify-deploy-branch="" data-netlify-deploy-context="production"></script>
 
 </body>
 </html>
