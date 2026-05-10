@@ -1,0 +1,11 @@
+# SPA routes
+/home       /index.html   200
+/portfolio  /index.html   200
+/about      /index.html   200
+/contact    /index.html   200
+
+# Old Pixieset/legacy redirects
+/new-page/  /  301
+/new-page   /  301
+/galleries/ /portfolio  301
+/galleries  /portfolio  301
