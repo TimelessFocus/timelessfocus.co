@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --olive-ink:   #252b1e;
-  --olive-dark:  #3a4529;
+  --olive-ink:   #2f3526;
+  --olive-dark:  #4a5539;
   --olive-mid:   #687558;
   --olive-soft:  #96a87e;
   --olive-mist:  #bfcc9e;
@@ -121,7 +121,7 @@ body {
 
 /* ─── INVEST PAGE HERO (uses portfolio-hero pattern from live site) ─── */
 .invest-hero {
-  height: 360px;
+  height: 720px;
   background: var(--olive-ink);
   display: flex;
   align-items: flex-end;
@@ -216,17 +216,9 @@ body {
   align-items: center;
 }
 .invest-image-slot {
-  background: var(--cream-deep);
   aspect-ratio: 4/5;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  border: 1px dashed var(--olive-mist);
+  overflow: hidden;
 }
 .invest-content .section-label { text-align: left; }
 .invest-content h2 {
@@ -307,17 +299,9 @@ body {
 .engagement-content { order: 1; }
 .engagement-image-slot { order: 2; }
 .engagement-image-slot {
-  background: var(--cream);
   aspect-ratio: 4/5;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  border: 1px dashed var(--olive-mist);
+  overflow: hidden;
 }
 .engagement-content h2 {
   font-family: var(--ff-display);
@@ -465,7 +449,7 @@ body {
 
 <section class="invest-hero">
   <div class="invest-hero-bg">
-    <img src="images/investment-hero.jpg" alt="Vow books detail — Ben Flanders Photography" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;">
+    <img src="images/investment-hero.jpg" alt="Wedding photography by Ben Flanders" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;">
   </div>
   <div class="invest-hero-overlay"></div>
   <div class="invest-hero-content">
@@ -483,7 +467,7 @@ body {
 <section class="invest-section">
   <div class="invest-grid">
 
-    <div class="invest-image-slot">[ Wedding image — couple, ceremony, or candid ]</div>
+    <div class="invest-image-slot"><img src="images/investment-wedding.jpg" alt="Bride and groom embracing — Ben Flanders Photography" style="width:100%;height:100%;object-fit:cover;border-radius:8px;display:block;"></div>
 
     <div class="invest-content">
       <div class="section-label">The Wedding Day</div>
@@ -522,10 +506,10 @@ body {
 
       <p>A separate session before your wedding day — a chance to get comfortable in front of the camera, capture this chapter of your story, and create something you can use for save-the-dates or simply to keep.</p>
 
-      <p class="engagement-meta">Includes 1–2 hours of coverage, a minimum of 50 fully edited images, and full print rights.</p>
+      <p class="engagement-meta">Includes 1–2 hours of coverage and full print rights.</p>
     </div>
 
-    <div class="engagement-image-slot">[ Engagement image — couple, candid, outdoor ]</div>
+    <div class="engagement-image-slot"><img src="images/investment-engagement.jpg" alt="Couple framed by stained glass — Ben Flanders Photography" style="width:100%;height:100%;object-fit:cover;border-radius:8px;display:block;"></div>
 
   </div>
 </section>
