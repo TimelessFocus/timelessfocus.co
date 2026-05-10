@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment — Ben Flanders Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --olive-ink:   #252b1e;
+  --olive-dark:  #3a4529;
+  --olive-mid:   #687558;
+  --olive-soft:  #96a87e;
+  --olive-mist:  #bfcc9e;
+  --olive-haze:  #dfe8cc;
+  --olive-veil:  #eef3e4;
+  --cream:       #faf6ee;
+  --cream-mid:   #f0ead8;
+  --cream-deep:  #e4dbc8;
+  --text:        #2f3526;
+  --text-soft:   #5a6348;
+  --text-muted:  #8a9878;
+  --rule:        #d4dcc0;
+  --ff-display:  'Cormorant Garamond', Georgia, serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── NAV (exact match to live site) ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0; right: 0;
+  z-index: 100;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  transition: background .4s var(--ease-out), box-shadow .4s;
+}
+.nav.scrolled {
+  background: rgba(250,246,238,.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--rule);
+}
+.nav-brand {
+  font-family: var(--ff-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--cream);
+  transition: color .4s;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.nav-brand small {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: .6;
+  margin-top: 2px;
+}
+.nav.scrolled .nav-brand { color: var(--olive-ink); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(250,246,238,.75);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color .3s, border-color .3s;
+  text-decoration: none;
+}
+.nav.scrolled .nav-links a { color: var(--text-soft); }
+.nav-links a:hover,
+.nav-links a.active { color: var(--olive-dark); border-color: var(--olive-soft); }
+.nav.scrolled .nav-links a:hover,
+.nav.scrolled .nav-links a.active { color: var(--olive-dark); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.nav-hamburger span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--cream);
+  transition: background .4s;
+}
+.nav.scrolled .nav-hamburger span { background: var(--olive-ink); }
+
+/* ─── CONTAINER (matches live site) ─── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+
+/* ─── INVEST PAGE HERO (uses portfolio-hero pattern from live site) ─── */
+.invest-hero {
+  height: 360px;
+  background: var(--olive-ink);
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.invest-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #4a5a38 0%, #6e8050 30%, #90a468 55%, #7a7858 75%, #5a5248 100%);
+}
+.invest-hero-bg-image-slot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--olive-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--olive-mist);
+  border: 1px dashed var(--olive-mist);
+  opacity: .6;
+}
+.invest-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(30,33,24,.45) 0%, rgba(30,33,24,.1) 100%);
+}
+.invest-hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--cream);
+  width: 100%;
+  text-align: center;
+}
+
+/* ─── SECTION LABEL (exact match) ─── */
+.section-label {
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--olive-mid);
+  margin-bottom: 1rem;
+}
+.section-label-light { color: var(--olive-mist); }
+
+/* Hero h2 styling matches portfolio hero */
+.invest-hero h2 {
+  font-family: var(--ff-display);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.2;
+}
+
+/* ─── REFLECTIVE INTRO ─── */
+.invest-intro {
+  background: var(--cream);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+}
+.invest-intro-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.invest-intro p {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  line-height: 1.5;
+  color: var(--olive-dark);
+  font-weight: 300;
+}
+
+/* ─── MAIN INVESTMENT BLOCK ─── */
+.invest-section {
+  padding: 4rem 2rem 5rem;
+  background: var(--cream);
+}
+.invest-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.invest-image-slot {
+  background: var(--cream-deep);
+  aspect-ratio: 4/5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px dashed var(--olive-mist);
+}
+.invest-content .section-label { text-align: left; }
+.invest-content h2 {
+  font-family: var(--ff-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  color: var(--olive-ink);
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+.invest-price {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--olive-mid);
+  margin-bottom: 2rem;
+  display: block;
+}
+.invest-includes { margin-bottom: 2rem; }
+.invest-includes-label {
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--olive-mid);
+  margin-bottom: 1rem;
+}
+.invest-list {
+  list-style: none;
+  padding: 0;
+}
+.invest-list li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: .65rem;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.invest-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--olive-soft);
+}
+.invest-tailored {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  border-left: 2px solid var(--olive-haze);
+  padding-left: 1.4rem;
+  margin-top: 1.2rem;
+}
+
+/* ─── DIVIDER ─── */
+.divider-strip {
+  height: 1px;
+  background: var(--rule);
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* ─── ENGAGEMENT SECTION ─── */
+.engagement-section {
+  padding: 5rem 2rem;
+  background: var(--cream-mid);
+}
+.engagement-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.engagement-content { order: 1; }
+.engagement-image-slot { order: 2; }
+.engagement-image-slot {
+  background: var(--cream);
+  aspect-ratio: 4/5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px dashed var(--olive-mist);
+}
+.engagement-content h2 {
+  font-family: var(--ff-display);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--olive-ink);
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+.engagement-content .section-label { text-align: left; }
+.engagement-content p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-soft);
+  margin-bottom: 1.4rem;
+}
+.engagement-meta {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ─── CTA BLOCK (exact copy from live site) ─── */
+.cta-block {
+  background: var(--olive-ink);
+  padding: 6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-block::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(191,204,158,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-block .section-label { color: var(--olive-soft); margin-bottom: 1rem; }
+.cta-heading {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: .75rem;
+  line-height: 1.15;
+}
+.cta-heading em { font-style: italic; color: var(--olive-haze); }
+.cta-body { color: rgba(250,246,238,.45); font-size: 14px; line-height: 1.7; margin-bottom: 2.5rem; }
+
+/* ─── BUTTONS (exact copy from live site) ─── */
+.btn {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: .95rem 2.4rem;
+  transition: all .25s var(--ease-out);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-olive {
+  background: var(--olive-dark);
+  border: 1px solid var(--olive-dark);
+  color: var(--cream);
+}
+.btn-olive:hover {
+  background: var(--olive-ink);
+  border-color: var(--olive-ink);
+}
+
+/* ─── FOOTER (exact copy from live site) ─── */
+.footer {
+  background: var(--olive-ink);
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-brand {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  color: rgba(250,246,238,.6);
+  cursor: pointer;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(250,246,238,.35);
+}
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-links a:hover { color: rgba(250,246,238,.7); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 760px) {
+  .nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .invest-hero { height: auto; aspect-ratio: 3/2; padding: 1.5rem; }
+  .invest-intro { padding: 3rem 1.5rem 2.5rem; }
+  .invest-section, .engagement-section { padding: 3rem 1.5rem; }
+  .cta-block { padding: 6rem 1.5rem; }
+  .invest-grid, .engagement-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .engagement-content { order: 2; }
+  .engagement-image-slot { order: 1; }
+  .footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-brand">
+    Ben Flanders
+    <small>New England Photographer</small>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="active">Investment</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="invest-hero">
+  <div class="invest-hero-bg">
+    <img src="images/investment-hero.jpg" alt="Vow books detail — Ben Flanders Photography" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;">
+  </div>
+  <div class="invest-hero-overlay"></div>
+  <div class="invest-hero-content">
+    <div class="section-label section-label-light">Investment</div>
+    <h2>What goes into your day.</h2>
+  </div>
+</section>
+
+<section class="invest-intro">
+  <div class="invest-intro-inner">
+    <p>"I'd rather show up as the photographer who knew exactly what mattered to you, than the one who sold you a package."</p>
+  </div>
+</section>
+
+<section class="invest-section">
+  <div class="invest-grid">
+
+    <div class="invest-image-slot">[ Wedding image — couple, ceremony, or candid ]</div>
+
+    <div class="invest-content">
+      <div class="section-label">The Wedding Day</div>
+      <h2>Wedding photography</h2>
+      <span class="invest-price">Investment begins at $3,000</span>
+
+      <div class="invest-includes">
+        <div class="invest-includes-label">Every wedding includes</div>
+        <ul class="invest-list">
+          <li>8 hours of coverage</li>
+          <li>A minimum of 300 fully edited high-resolution images</li>
+          <li>Full print and distribution rights</li>
+          <li>A 24-hour sneak peek gallery</li>
+          <li>Online gallery hosted for one full year</li>
+          <li>Travel within 60 miles of Manchester, NH</li>
+          <li>A pre-wedding planning consultation</li>
+          <li>Final gallery delivered within 10–12 weeks</li>
+        </ul>
+      </div>
+
+      <p class="invest-tailored">Every wedding is unique. What you see here can be everything you need — or we can tailor it specifically to your day with additional coverage, a second photographer, or anything else that helps me capture it the way you want.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider-strip"></div>
+
+<section class="engagement-section">
+  <div class="engagement-grid">
+
+    <div class="engagement-content">
+      <div class="section-label">Before the day</div>
+      <h2>Engagement Sessions</h2>
+      <span class="invest-price">$400</span>
+
+      <p>A separate session before your wedding day — a chance to get comfortable in front of the camera, capture this chapter of your story, and create something you can use for save-the-dates or simply to keep.</p>
+
+      <p class="engagement-meta">Includes 1–2 hours of coverage, a minimum of 50 fully edited images, and full print rights.</p>
+    </div>
+
+    <div class="engagement-image-slot">[ Engagement image — couple, candid, outdoor ]</div>
+
+  </div>
+</section>
+
+<!-- CTA BLOCK — exact match to live site Let's Collaborate pattern -->
+<section class="cta-block">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="cta-heading"><em>Let's plan your day.</em></h2>
+    <p class="cta-body">Send me the details. I'll be in touch.</p>
+    <a href="#" class="btn btn-olive">Start A Conversation →</a>
+  </div>
+</section>
+
+<!-- FOOTER — exact match to live site -->
+<footer class="footer">
+  <div class="footer-brand">Ben Flanders Photography</div>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Contact</a>
+    <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+</script>
+
+</body>
+</html>
