@@ -40,6 +40,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
 /* ─── NAV (exact match to live site) ─── */
 .nav {
   position: fixed;
@@ -121,7 +132,7 @@ body {
 
 /* ─── INVEST PAGE HERO (uses portfolio-hero pattern from live site) ─── */
 .invest-hero {
-  height: 520px;
+  height: 720px;
   background: var(--olive-ink);
   display: flex;
   align-items: flex-end;
@@ -132,7 +143,7 @@ body {
 .invest-hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(150deg, #4a5a38 0%, #6e8050 30%, #90a468 55%, #7a7858 75%, #5a5248 100%);
+  background: var(--olive-ink);
 }
 .invest-hero-bg-image-slot {
   position: absolute;
@@ -415,6 +426,7 @@ body {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .invest-hero { height: auto; aspect-ratio: 3/2; padding: 1.5rem; }
+  .invest-hero-bg img { object-fit: cover !important; object-position: center 35% !important; }
   .invest-intro { padding: 3rem 1.5rem 2.5rem; }
   .invest-section, .engagement-section { padding: 3rem 1.5rem; }
   .cta-block { padding: 6rem 1.5rem; }
@@ -431,16 +443,16 @@ body {
 <body>
 
 <nav class="nav" id="mainNav">
-  <div class="nav-brand">
+  <a href="index.html" style="text-decoration:none;display:block;" class="nav-brand-link"><div class="nav-brand">
     Ben Flanders
     <small>New England Photographer</small>
-  </div>
+  </div></a>
   <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#" class="active">Investment</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="investment.html" class="active">Investment</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <div class="nav-hamburger">
     <span></span><span></span><span></span>
@@ -449,7 +461,7 @@ body {
 
 <section class="invest-hero">
   <div class="invest-hero-bg">
-    <img src="images/investment-hero.jpg" alt="Wedding photography by Ben Flanders" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;">
+    <img src="images/investment-hero.jpg" alt="Wedding photography by Ben Flanders" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center top;">
   </div>
   <div class="invest-hero-overlay"></div>
   <div class="invest-hero-content">
@@ -520,16 +532,16 @@ body {
     <div class="section-label">Get In Touch</div>
     <h2 class="cta-heading"><em>Let's plan your day.</em></h2>
     <p class="cta-body">Send me the details. I'll be in touch.</p>
-    <a href="#" class="btn btn-olive">Start A Conversation →</a>
+    <a href="index.html#contact" class="btn btn-olive">Start A Conversation →</a>
   </div>
 </section>
 
 <!-- FOOTER — exact match to live site -->
 <footer class="footer">
-  <div class="footer-brand">Ben Flanders Photography</div>
+  <a href="index.html" style="text-decoration:none;"><div class="footer-brand">Ben Flanders Photography</div></a>
   <div class="footer-links">
-    <a href="#">Instagram</a>
-    <a href="#">Contact</a>
+    <a href="https://instagram.com/bennm.jpg" target="_blank" rel="noopener">Instagram</a>
+    <a href="index.html#contact">Contact</a>
     <a href="#" style="pointer-events:none;">© Timeless Focus Co. LLC 2026</a>
   </div>
 </footer>
