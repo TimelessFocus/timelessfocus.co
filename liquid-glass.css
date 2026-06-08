@@ -1,0 +1,61 @@
+/* ─────────────────────────────────────────────────────────────
+   LIQUID GLASS — header only, olive green, every page.
+   Same tint on .nav and .nav-mobile so opening the hamburger
+   menu blends seamlessly with the header bar.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --glass-tint: rgba(74, 85, 57, 0.55);   /* olive-dark @ 55% */
+  --glass-blur: blur(22px) saturate(1.5);
+}
+
+/* Fallback for browsers without backdrop-filter — solid olive */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root { --glass-tint: rgba(74, 85, 57, 0.96); }
+}
+
+/* ─── HEADER — glass on every page, both scroll states ─── */
+.nav,
+.nav.scrolled {
+  background: var(--glass-tint) !important;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 0 !important;
+  box-shadow: 0 6px 24px rgba(30, 33, 24, 0.18) !important;
+}
+
+/* Cream text across all states (override the cream-text-on-scrolled flip) */
+.nav .nav-brand,
+.nav .nav-links a,
+.nav.scrolled .nav-brand,
+.nav.scrolled .nav-links a {
+  color: #faf6ee !important;
+}
+.nav .nav-links a:hover,
+.nav .nav-links a.active,
+.nav.scrolled .nav-links a:hover,
+.nav.scrolled .nav-links a.active {
+  color: #eef3e4 !important;
+  border-color: rgba(250, 246, 238, 0.55) !important;
+}
+.nav .nav-hamburger span,
+.nav.scrolled .nav-hamburger span {
+  background: #faf6ee !important;
+}
+
+/* ─── MOBILE MENU — same olive glass, so it blends with the header ─── */
+.nav-mobile {
+  background: var(--glass-tint) !important;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* Lighter blur on small screens for battery / perf */
+@media (max-width: 640px) {
+  .nav,
+  .nav.scrolled,
+  .nav-mobile {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+}
