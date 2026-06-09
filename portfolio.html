@@ -364,7 +364,7 @@ body::after {
 
 <body data-page="portfolio">
 
-<nav class="nav scrolled" id="mainNav">
+<nav class="nav" id="mainNav">
   <a href="/" class="nav-brand-link">
     <div class="nav-brand">
       Ben Flanders
@@ -391,7 +391,6 @@ body::after {
   <a href="/contact">Contact</a>
 </div>
 
-<div style="height:68px;"></div>
 
 <div class="portfolio-hero">
   <div class="portfolio-hero-bg" style="opacity:1;">
@@ -493,7 +492,7 @@ function setCategory(cat) {
 
 function updateNav() {
   const nav = document.getElementById('mainNav');
-  if (window.scrollY > 40) nav.classList.add('scrolled');
+  nav.classList.toggle('scrolled', window.scrollY > 40);
 }
 window.addEventListener('scroll', updateNav, { passive: true });
 

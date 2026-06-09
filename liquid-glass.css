@@ -1,7 +1,9 @@
 /* ─────────────────────────────────────────────────────────────
-   LIQUID GLASS — header only, olive green, every page.
-   Same tint on .nav and .nav-mobile so opening the hamburger
-   menu blends seamlessly with the header bar.
+   LIQUID GLASS — header only, olive green.
+   Transparent at the top of every page; fades into glass once
+   the user scrolls (when .scrolled is added by JS).
+   Mobile menu uses the IDENTICAL tint so the header bar blends
+   seamlessly into the open overlay.
    ───────────────────────────────────────────────────────────── */
 
 :root {
@@ -14,8 +16,82 @@
   :root { --glass-tint: rgba(74, 85, 57, 0.96); }
 }
 
-/* ─── HEADER — glass on every page, both scroll states ─── */
-.nav,
+/* ─── ASYMMETRIC FADE ─── slow fade IN as you scroll down (.75s),
+   quick fade OUT when scrolling back to top (.3s). The transition
+   on each state describes how the element animates INTO that state,
+   so .nav (unscrolled) governs the "back to transparent" timing, and
+   .nav.scrolled governs the "into glass" timing. ─── */
+.nav {
+  transition:
+    background .3s var(--ease-out),
+    -webkit-backdrop-filter .3s var(--ease-out),
+    backdrop-filter .3s var(--ease-out),
+    box-shadow .3s var(--ease-out) !important;
+}
+.nav.scrolled {
+  transition:
+    background .75s var(--ease-out),
+    -webkit-backdrop-filter .75s var(--ease-out),
+    backdrop-filter .75s var(--ease-out),
+    box-shadow .75s var(--ease-out) !important;
+}
+.nav .nav-brand,
+.nav .nav-links a {
+  transition: color .3s var(--ease-out),
+              border-color .3s var(--ease-out) !important;
+}
+.nav.scrolled .nav-brand,
+.nav.scrolled .nav-links a {
+  transition: color .75s var(--ease-out),
+              border-color .75s var(--ease-out) !important;
+}
+
+/* Contact: let the photo column extend up to the very top of the page
+   so it sits behind the glass nav (no 68px gap above). On desktop,
+   push only the form column down so inputs don't hide behind the nav.
+   On mobile (stacked layout), give the photo section more vertical
+   room so the heading isn't crammed right under the header. */
+body[data-page="contact"] .contact-wrap {
+  min-height: 100svh !important;
+}
+@media (min-width: 901px) {
+  body[data-page="contact"] .contact-right {
+    padding-top: 8rem !important;
+  }
+}
+@media (max-width: 900px) {
+  body[data-page="contact"] .contact-left {
+    min-height: 500px !important;
+  }
+}
+
+/* Investment hero: the upper portion of the photo (vow papers) is too
+   light for the cream nav text to read against. Stack a small dark top
+   gradient on top of the existing bottom-up overlay so the floating
+   transparent nav stays legible. */
+body[data-page="investment"] .invest-hero-overlay {
+  background:
+    linear-gradient(to top,
+      rgba(30,33,24,.78) 0%,
+      rgba(30,33,24,.5)  18%,
+      rgba(30,33,24,.2)  42%,
+      rgba(30,33,24,.05) 70%,
+      transparent 100%),
+    linear-gradient(to bottom,
+      rgba(30,33,24,.6) 0%,
+      rgba(30,33,24,.35) 7%,
+      rgba(30,33,24,.12) 16%,
+      transparent 28%) !important;
+}
+
+/* Hover (any state) — keep cream so it doesn't flip to live olive-dark */
+.nav:not(.scrolled) .nav-links a:hover,
+.nav.scrolled .nav-links a:hover {
+  color: #faf6ee !important;
+  border-color: rgba(250, 246, 238, 0.45) !important;
+}
+
+/* ─── HEADER GLASS — only when scrolled ─── */
 .nav.scrolled {
   background: var(--glass-tint) !important;
   -webkit-backdrop-filter: var(--glass-blur);
@@ -24,35 +100,68 @@
   box-shadow: 0 6px 24px rgba(30, 33, 24, 0.18) !important;
 }
 
-/* Cream text across all states (override the cream-text-on-scrolled flip) */
-.nav .nav-brand,
-.nav .nav-links a,
+/* Home: lighter glass so it doesn't feel heavy over the bright hero. */
+body[data-page="home"] .nav.scrolled {
+  background: rgba(74, 85, 57, 0.4) !important;
+}
+
+/* Cream text on the scrolled (glass) state */
 .nav.scrolled .nav-brand,
 .nav.scrolled .nav-links a {
   color: #faf6ee !important;
 }
-.nav .nav-links a:hover,
-.nav .nav-links a.active,
-.nav.scrolled .nav-links a:hover,
-.nav.scrolled .nav-links a.active {
-  color: #eef3e4 !important;
-  border-color: rgba(250, 246, 238, 0.55) !important;
-}
-.nav .nav-hamburger span,
 .nav.scrolled .nav-hamburger span {
   background: #faf6ee !important;
 }
 
-/* ─── MOBILE MENU — same olive glass, so it blends with the header ─── */
+/* ─── ACTIVE LINK ─── cream text + a soft dark text-shadow halo.
+   The underline is drawn by a pseudo-element so we can trim the
+   trailing letter-spacing (.14em) — that makes the line sit
+   centered under the visible word instead of extending past it. */
+.nav-links a {
+  position: relative;
+}
+.nav-links a.active {
+  color: #faf6ee !important;
+  text-shadow: 0 0 6px rgba(30, 33, 24, 0.5);
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: .14em;            /* trim trailing letter-spacing */
+  bottom: -2px;
+  height: 2px;
+  background: currentColor;
+}
+
+
+/* ─── MOBILE MENU — same olive glass ─── */
 .nav-mobile {
   background: var(--glass-tint) !important;
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
 }
 
+/* SEAMLESS BLEND: when the mobile menu is open, drop the nav bar's
+   own background so the header doesn't double-tint over the menu. */
+body:has(.nav-mobile.open) .nav,
+body:has(.nav-mobile.open) .nav.scrolled {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+body:has(.nav-mobile.open) .nav .nav-brand,
+body:has(.nav-mobile.open) .nav .nav-links a {
+  color: #faf6ee !important;
+}
+body:has(.nav-mobile.open) .nav .nav-hamburger span {
+  background: #faf6ee !important;
+}
+
 /* Lighter blur on small screens for battery / perf */
 @media (max-width: 640px) {
-  .nav,
   .nav.scrolled,
   .nav-mobile {
     -webkit-backdrop-filter: blur(14px);

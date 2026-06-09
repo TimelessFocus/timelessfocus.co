@@ -561,7 +561,7 @@ body::after {
 
 <body data-page="investment">
 
-<nav class="nav scrolled" id="mainNav">
+<nav class="nav" id="mainNav">
   <a href="/" class="nav-brand-link">
     <div class="nav-brand">
       Ben Flanders
@@ -588,7 +588,6 @@ body::after {
   <a href="/contact">Contact</a>
 </div>
 
-<div style="height:68px;"></div>
 
 <section class="invest-hero">
   <div class="invest-hero-bg">
@@ -678,6 +677,12 @@ body::after {
 <script>
 // Investment page nav is always in 'scrolled' state (cream background, olive text)
 // for legibility — no transparent overlap with the bright hero image.
+
+function updateNav() {
+  const nav = document.getElementById('mainNav');
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}
+window.addEventListener('scroll', updateNav, { passive: true });
 
 function toggleMobileNav() {
   const nav = document.getElementById('mobileNav');
