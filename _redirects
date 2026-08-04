@@ -1,7 +1,6 @@
 # Pretty URLs — clean URL → .html file (200 = rewrite, URL stays clean)
 /portfolio    /portfolio.html    200
 /about        /about.html        200
-/investment   /investment.html   200
 /contact      /contact.html      200
 
 # Old SPA hash routes are handled client-side in index.html
@@ -12,3 +11,11 @@
 /new-page    /            301
 /galleries/  /portfolio   301
 /galleries   /portfolio   301
+
+# Archived investment page — redirect old URL to contact so any bookmarks
+# or search-engine index entries still land somewhere useful.
+/investment   /contact     301
+/investment/  /contact     301
+
+# Block direct access to anything in /_archive/
+/_archive/*   /            404
